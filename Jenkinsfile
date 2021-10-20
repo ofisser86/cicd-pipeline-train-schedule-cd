@@ -26,7 +26,7 @@ pipeline {
                                 configName: 'prod',
                                 sshCredentials: [
                                     username: 'didi',
-                                    keyPath: '.ssh/id_rsa'
+                                    keyPath: '/var/lib/jenkins/.ssh/id_rsa'
                                 ], 
                                 transfers: [
                                     sshTransfer(
