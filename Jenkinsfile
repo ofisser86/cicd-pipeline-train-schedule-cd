@@ -16,9 +16,8 @@ pipeline {
                 input 'Does the staging environment look OK?'
                 milestone(1)
                 withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'prod', \
-                                             keyFileVariable: '', \
-                                             passphraseVariable: '', \
-                                             usernameVariable: '')]) {
+                                             keyFileVariable: '/var/lib/jenkins/.ssh/id_rsa', \
+                                             usernameVariable: 'didi')]) {
                     sshPublisher(
                         failOnError: true,
                         continueOnError: false,
@@ -26,7 +25,8 @@ pipeline {
                             sshPublisherDesc(
                                 configName: 'prod',
                                 sshCredentials: [
-                                    keyPath: ".ssh/id_rsa"
+                                    username: 'didi',
+                                    keyPath: '.ssh/id_rsa'
                                 ], 
                                 transfers: [
                                     sshTransfer(
